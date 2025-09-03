@@ -14,10 +14,10 @@
 
 Key highlights:
 
-* CNN achieves **high accuracy** on MNIST (over 99% on test set).
-* Interactive **Tkinter GUI** for drawing digits.
-* Visualization of **input images**, **prediction probabilities**, and **feature maps** from the first convolutional layer.
-* Graphs show **training progress** over epochs (accuracy and loss).
+- CNN achieves **high accuracy** on MNIST (over 98% on test set).
+- Interactive **Tkinter GUI** for drawing digits.
+- Visualization of **input images**, **prediction probabilities**, and **feature maps** from the first convolutional layer.
+- Graphs show **training progress** over epochs (accuracy and loss).
 
 ---
 
@@ -37,20 +37,20 @@ Key highlights:
 
 ### Interactive Drawing & Prediction
 
-* Draw digits directly on a 280x280 canvas.
-* Real-time prediction of digits 0–9.
-* Clear the canvas at any time to draw a new digit.
+- Draw digits directly on a 280x280 canvas.
+- Real-time prediction of digits 0–9.
+- Clear the canvas at any time to draw a new digit.
 
 ### Model Visualizations (Debug Mode)
 
-* **Input image** as seen by the CNN.
-* **Softmax probabilities** for all 10 digits.
-* **Feature maps** from the first convolutional layer (reveals learned patterns).
+- **Input image** as seen by the CNN.
+- **Softmax probabilities** for all 10 digits.
+- **Feature maps** from the first convolutional layer (reveals learned patterns).
 
 ### Training Progress
 
-* Track **accuracy** and **loss** during training.
-* Graphs illustrate how the CNN improves over epochs.
+- Track **accuracy** and **loss** during training.
+- Graphs illustrate how the CNN improves over epochs.
 
 ---
 
@@ -74,11 +74,11 @@ Key highlights:
 
 By exploring this project, you will understand:
 
-* How to implement and train a CNN in PyTorch.
-* How to preprocess images for model input.
-* How to integrate a PyTorch model with a **Tkinter GUI**.
-* How to visualize **CNN internals** and **prediction probabilities**.
-* How to interpret **training graphs** and model performance.
+- How to implement and train a CNN in PyTorch.
+- How to preprocess images for model input.
+- How to integrate a PyTorch model with a **Tkinter GUI**.
+- How to visualize **CNN internals** and **prediction probabilities**.
+- How to interpret **training graphs** and model performance.
 
 ---
 
