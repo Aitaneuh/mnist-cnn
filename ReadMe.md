@@ -1,10 +1,11 @@
 # MNIST CNN
 
-![Python](https://img.shields.io/badge/python-3.11-blue)
+![Python](https://img.shields.io/badge/python-3.13-blue)
 ![PyTorch](https://img.shields.io/badge/pytorch-2.0-orange)
 ![Mnist](https://img.shields.io/badge/mnist-dataset-white)
 ![Accuracy](https://img.shields.io/badge/accuracy-98%25-brightgreen)
 ![Epochs](https://img.shields.io/badge/epochs-50-blue)
+![Epochs](https://img.shields.io/badge/Streamlit-Online-red)
 
 ![mnist](images/mnist.png)
 
@@ -18,6 +19,22 @@ Key highlights:
 - Interactive **Tkinter GUI** for drawing digits.
 - Visualization of **input images**, **prediction probabilities**, and **feature maps** from the first convolutional layer.
 - Graphs show **training progress** over epochs (accuracy and loss).
+
+---
+
+## The MNIST CNN Online
+
+Want to see the MNIST digit recognizer in action?
+
+You can **draw your own digits** or upload an image, and the model will predict what number you wrote in real-time. It even shows:
+
+- The **probabilities for each digit**
+- The **processed input image**
+- The **feature maps** from the first convolutional layer
+
+Check it out here: [https://aitaneuh-mnist-cnn.streamlit.app/](https://aitaneuh-mnist-cnn.streamlit.app/)
+
+> **Tip:** Use a white brush on a black background for best results, just like MNIST images.
 
 ---
 
