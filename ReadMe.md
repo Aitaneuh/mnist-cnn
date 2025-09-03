@@ -1,87 +1,95 @@
-# MNIST Interactive Digit Recognizer (with CNN)
+# MNIST CNN
 
-This project implements a simple **Convolutional Neural Network (CNN)** trained on the MNIST dataset to recognize handwritten digits.  
-It includes training the model, saving it, and testing it interactively through a drawing interface.
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![PyTorch](https://img.shields.io/badge/pytorch-2.0-orange)
+![Mnist](https://img.shields.io/badge/mnist-dataset-white)
+![Accuracy](https://img.shields.io/badge/accuracy-98%25-brightgreen)
+![Epochs](https://img.shields.io/badge/epochs-50-blue)
+
+![mnist](images/mnist.png)
+
+## Overview
+
+**MNIST CNN** is an interactive handwritten digit recognition project that demonstrates the power of convolutional neural networks (CNNs) using **PyTorch**. The system allows users to draw digits, see real-time predictions, and explore the internal workings of the model through visualizations.
+
+Key highlights:
+
+* CNN achieves **high accuracy** on MNIST (over 99% on test set).
+* Interactive **Tkinter GUI** for drawing digits.
+* Visualization of **input images**, **prediction probabilities**, and **feature maps** from the first convolutional layer.
+* Graphs show **training progress** over epochs (accuracy and loss).
 
 ---
 
 ## Project Structure
 
-- **model.py**  
-  Contains the `CNNModel` class (Convolutional Neural Network).  
-  This is the architecture used for MNIST digit recognition.
-
-- **train.py**  
-  Trains the CNN on the MNIST dataset. Steps:  
-  1. Load the MNIST dataset (training + test).  
-  2. Define the CNN (`CNNModel`).  
-  3. Train the model using Adam optimizer and CrossEntropyLoss.  
-  4. Track accuracy and loss during training.  
-  5. Save the trained weights to `mnist_cnn.pth`.  
-  6. Generate a plot showing accuracy progression from 1 to 50 epochs.
-
-- **draw.py**  
-  Interactive digit testing with Tkinter:  
-  - Draw a digit on a 280×280 canvas.  
-  - Click **Predict** to see the model’s guess.  
-  - Click **Clear** to reset the canvas.  
-
-⚠️ Note: While the CNN is more robust than a simple dense network, it still expects digits to be centered and relatively similar to MNIST’s style.
-
----
-
-## Requirements
-
-- Python 3.10+  
-- Required libraries:
-
-```bash
-  pip install torch torchvision matplotlib pillow
-````
-
----
-
-## Usage
-
-### 1. Train the CNN
-
-```bash
-python train.py
+```text
+├── model.py        # CNN architecture
+├── train.py        # Training script with graphs
+├── draw.py         # GUI for drawing digits and visualization
+├── graphs/         # Example plots (accuracy, loss, feature maps)
+└── README.md
 ```
 
-- The model will train on MNIST and save the weights to `mnist_cnn.pth`.
-- A plot of training accuracy (1–50 epochs) will be generated.
+---
 
-The plot should look like this for 20 epochs for example :
+## Features
 
-![plot](image/Figure_1.png)
+### Interactive Drawing & Prediction
 
-### 2. Test the model interactively
+* Draw digits directly on a 280x280 canvas.
+* Real-time prediction of digits 0–9.
+* Clear the canvas at any time to draw a new digit.
+
+### Model Visualizations (Debug Mode)
+
+* **Input image** as seen by the CNN.
+* **Softmax probabilities** for all 10 digits.
+* **Feature maps** from the first convolutional layer (reveals learned patterns).
+
+### Training Progress
+
+* Track **accuracy** and **loss** during training.
+* Graphs illustrate how the CNN improves over epochs.
+
+---
+
+## Results & Visualizations
+
+### Loss and Accuracy over 50 Epochs
+
+![Accuracy Graph](graphs/training.png)
+
+### Debug Window (with number 1)
+
+![Debug Window](graphs/debug.png)
+
+### Tkinter GUI Screenshot
+
+![GUI Screenshot](graphs/gui.png)
+
+---
+
+## Learning Outcomes
+
+By exploring this project, you will understand:
+
+* How to implement and train a CNN in PyTorch.
+* How to preprocess images for model input.
+* How to integrate a PyTorch model with a **Tkinter GUI**.
+* How to visualize **CNN internals** and **prediction probabilities**.
+* How to interpret **training graphs** and model performance.
+
+---
+
+## Installation
 
 ```bash
-python draw.py
+git clone https://github.com/Aitaneuh/mnist-cnn.git
+cd mnist-cnn
+pip install -r requirements.txt
+python train.py      # Train the model
+python draw.py       # Launch the drawing GUI
 ```
-
-- A Tkinter window will open with a black canvas.
-- Draw a digit using your mouse (white strokes).
-- Click **Predict** to see the recognized digit.
-- Click **Clear** to draw again.
-
----
-
-## Notes
-
-- MNIST uses **black background and white digits**. The Tkinter interface follows the same convention.
-- If the drawn digit is too small, off-center, or unusual, the prediction may fail.
-- Preprocessing (centering, scaling) and data augmentation during training can further improve results.
-
----
-
-## Future Improvements
-
-- Add a real-time 28×28 preview of what the CNN “sees”.
-- Add more advanced CNN architectures (e.g., LeNet, ResNet).
-- Extend the interface to save custom drawings and re-train with them.
-- Deploy as a simple web app with Flask or FastAPI.
 
 ---

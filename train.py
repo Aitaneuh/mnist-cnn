@@ -13,10 +13,12 @@ test_accuracies = []
 
 from pathlib import Path
 
+from model import CNNModel
+
 transform = transforms.Compose([
     transforms.RandomAffine(degrees=15, translate=(0.1, 0.1), scale=(0.8, 1.2)),
-    transforms.ToTensor(),  # Convertit les images en tenseurs PyTorch
-    transforms.Normalize((0.5,), (0.5,))  # Normalisation pour accélérer l'apprentissage
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
 ])
 
 train_dataset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
@@ -25,46 +27,17 @@ test_dataset = torchvision.datasets.MNIST(root='./data', train=False, download=T
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-
-class CNNModel(nn.Module):
-    def __init__(self):
-        super(CNNModel, self).__init__()
-        # Convolutions
-        self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1)
-        self.bn1 = nn.BatchNorm2d(32)   # normalisation
-        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
-        self.bn2 = nn.BatchNorm2d(64)
-        self.pool = nn.MaxPool2d(2, 2)
-
-        # Fully connected
-        self.fc1 = nn.Linear(64*7*7, 128)
-        self.dropout = nn.Dropout(0.5)  # dropout pour éviter overfitting
-        self.fc2 = nn.Linear(128, 10)
-
-    def forward(self, x):
-        x = self.pool(F.relu(self.bn1(self.conv1(x))))  # [32,14,14]
-        x = self.pool(F.relu(self.bn2(self.conv2(x))))  # [64,7,7]
-        x = x.view(-1, 64*7*7)
-        x = F.relu(self.fc1(x))
-        x = self.dropout(x)  # important : dropout seulement après une couche fully connected
-        x = self.fc2(x)
-        return x
-
-
-
-model = CNNModel()  # recrée l’architecture
+model = CNNModel()
 
 mnist_model = Path("mnist_model.pth")
 if mnist_model.is_file():
     model.load_state_dict(torch.load("mnist_model.pth"))
 
-# model.eval()  # passe en mode évaluation (important pour dropout/batchnorm si utilisés)
-
-criterion = nn.CrossEntropyLoss()  # Pour classification multi-classes
-optimizer = optim.Adam(model.parameters(), lr=0.001)  # Optimiseur Adam
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 
-epochs = 20
+epochs = 50
 
 for epoch in range(epochs):
     running_loss = 0
@@ -78,7 +51,7 @@ for epoch in range(epochs):
         loss.backward()
         optimizer.step()
 
-        running_loss += loss.item() * labels.size(0)  # somme des pertes
+        running_loss += loss.item() * labels.size(0)
         _, predicted = torch.max(outputs, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
@@ -88,7 +61,6 @@ for epoch in range(epochs):
     train_losses.append(train_loss)
     train_accuracies.append(train_accuracy)
     
-    # calcul de l'accuracy sur le test set
     correct_test = 0
     total_test = 0
     with torch.no_grad():
