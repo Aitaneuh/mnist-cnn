@@ -52,8 +52,6 @@ class App:
         
         # redimensionner à 28x28
         img = img.resize((28,28))
-        # inverser couleurs pour MNIST
-        img = ImageOps.invert(img)
         # normaliser
         img_array = np.array(img)/255.0 # type: ignore
         img_tensor = torch.tensor(img_array, dtype=torch.float32).unsqueeze(0).unsqueeze(0)

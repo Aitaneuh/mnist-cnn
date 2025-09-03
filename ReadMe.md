@@ -52,6 +52,10 @@ python train.py
 - The model will train on MNIST and save the weights to `mnist_cnn.pth`.
 - A plot of training accuracy (1–50 epochs) will be generated.
 
+The plot should look like this for 20 epochs for example :
+
+![plot](image/Figure_1.png)
+
 ### 2. Test the model interactively
 
 ```bash
